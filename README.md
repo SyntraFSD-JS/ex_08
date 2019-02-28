@@ -10,7 +10,7 @@ Gebruik de terminal uit VSCode
  om de volgende commands uit te voeren.
 (vervang `[naam]` door je eigen naam)
 
-1. `git clone https://github.com/SyntraFSD-JS/ex-08.git ex-07`
+1. `git clone https://github.com/SyntraFSD-JS/ex-08.git ex-08`
 2. `cd ex-08`
 3. `git checkout -b [naam]`
 4. `git push --set-upstream origin [naam]`
