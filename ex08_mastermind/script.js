@@ -18,19 +18,21 @@ const winnerSubmitBtn = document.querySelectorAll('#winner-submit-btn');
 
 // Save the code/solution of the game in this variable
 // Hint: save your code in an array
-var code = [Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1)];
+let code = [Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1)];
 
 // ********** View **********
 // .../1
 function hideCode() {
   // hide the code
   // have a look at the html to find out how
+  document.getElementById('solution-container').classList.add('hidden');
 }
 
 // .../1
 function showCode() {
   // show the code
   // have a look at the html to find out how
+  document.getElementById('solution-container').classList.remove('hidden');
 }
 
 // .../4
