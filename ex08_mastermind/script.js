@@ -8,17 +8,17 @@
 // ********** Model **********
 // .../7
 // QuerySelectors
-const solutionContainer = document.querySelector(#solution-container);
-const triesContainer = document.querySelector(#tries-container);
-const tryInputSection = document.querySelector(#try-input-section);
-const tryInputs = document.querySelectorAll(#try-inputs);
-const trySubmitBtn = document.querySelector(#try-submit-btn);
-const messageContainer = document.querySelectorAll(#winner-message-container);
-const winnerSubmitBtn = document.querySelectorAll(#winner-submit-btn);
+const solutionContainer = document.querySelector('#solution-container');
+const triesContainer = document.querySelector('#tries-container');
+const tryInputSection = document.querySelector('#try-input-section');
+const tryInputs = document.querySelectorAll('#try-inputs');
+const trySubmitBtn = document.querySelector('#try-submit-btn');
+const messageContainer = document.querySelectorAll('#winner-message-container');
+const winnerSubmitBtn = document.querySelectorAll('#winner-submit-btn');
 
 // Save the code/solution of the game in this variable
 // Hint: save your code in an array
-let code = null;
+var code = [Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1)];
 
 // ********** View **********
 // .../1
