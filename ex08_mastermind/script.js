@@ -25,20 +25,21 @@ let code = [Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) 
 function hideCode() {
   // hide the code
   // have a look at the html to find out how
-  document.getElementById('solution-container').classList.add('hidden');
+  solutionContainer.classList.add('hidden');
 }
 
 // .../1
 function showCode() {
   // show the code
   // have a look at the html to find out how
-  document.getElementById('solution-container').classList.remove('hidden');
+  solutionContainer.classList.remove('hidden');
 }
 
 // .../4
 function drawCode(codeArray) {
   // Draw the code  array into solution-container
   // Don't forget to empty the container first
+
 }
 
 // .../1
