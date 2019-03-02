@@ -8,17 +8,18 @@
 // ********** Model **********
 // .../7
 // QuerySelectors
-const solutionContainer = document.querySelector('solution-container');
-const triesContainer = document.querySelector('tries-container');
-const tryInputSection = document.querySelector('try-input-section');
-const tryInputs = document.querySelector('try-input');
-const trySubmitBtn = document.querySelector('try-submit-btn');
-const messageContainer = document.querySelector('winner-message-container');
-const winnerSubmitBtn = document.querySelector('winner-submit-btn');
+const solutionContainer = document.querySelector('#solution-container');
+const triesContainer = document.querySelector('#tries-container');
+const tryInputSection = document.querySelector('#try-input-section');
+const tryInputContainer = document.querySelector('#try-input-container');
+const tryInputs = document.querySelector('.try-input');
+const trySubmitBtn = document.querySelector('#try-submit-btn');
+const messageContainer = document.querySelector('#winner-message-container');
+const winnerSubmitBtn = document.querySelector('#winner-submit-btn');
 
 // Save the code/solution of the game in this variable
 // Hint: save your code in an array
-let code = null;
+let code;
 
 // ********** View **********
 // .../1
@@ -37,11 +38,11 @@ function showCode() {
 
 // .../4
 function drawCode(codeArray) {
-  for (var i = solutionContainer.length; i > 0; i--) {
-    solutionContainer.pop();
-  };
-  
+  // Why should I empty the container when I populate it with new values directly?
 
+  codeArray.forEach((number, index) => {
+    solutionContainer.querySelectorAll('.solution-option')[index].innerHTML = number;
+  });
 
   // Draw the code  array into solution-container
   // Don't forget to empty the container first
@@ -49,7 +50,7 @@ function drawCode(codeArray) {
 
 // .../1
 function emptyTriesContainer() {
- for (var i = triesContainer.length; i > 0; i--) {
+ for (let i = triesContainer.length; i > 0; i--) {
     triesContainer.pop();
   }
   // empty the tries container
@@ -71,23 +72,31 @@ function showTryInput() {
   // show tryInputContainer
   // hide messageContainer
   // use dont-show class
+
+  tryInputSection.classList.remove('dont-show');
+  messageContainer.classList.add('dont-show');
 }
 
 // .../2
 function showMessage() {
-  // show tryInputContainer
-  // hide messageContainer
+  // hide tryInputContainer
+  // show messageContainer
   // use dont-show class
+
+  tryInputSection.classList.add('dont-show');
+  messageContainer.classList.remove('dont-show');
 }
 
 // ********** Update **********
 // .../3
 function randomNumber() {
+  return Math.floor(Math.random() * 5) + 1;
   // this function returns a random number between 1 and 6
 }
 
 // .../4
 function generateNewCode() {
+  return Array(4).fill(0,0,4).map(() => randomNumber());
   // this function generates and returns a new code (array of 4 random numbers)
 }
 
@@ -96,11 +105,23 @@ function validateTryInputs() {
   // validate all four try input field
   // make sure all numbers are between 1 and 6
   // return true or false
+
+  const wrongValue = tryInputContainer.querySelectorAll('.try-input').some((number) => Number.isNaN(number) || number < 1 || number > 6);
+
+  return !wrongValue;
 }
 
 // .../6
 function initGame() {
   // Reset game
+
+  // Remove all entries
+
+  code = generateNewCode();
+
+  drawCode(code);
+
+  showTryInput();
 }
 
 // .../4
@@ -124,6 +145,10 @@ function calculateCorrectPlaceCount(codeArray, tryArray) {
 // ********** Events **********
 window.addEventListener('load', function () {
   initGame();
+});
+
+trySubmitBtn.addEventListener('onclick', () => {
+  validateTryInputs();
 });
 
 // .../8
