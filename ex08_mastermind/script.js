@@ -8,13 +8,13 @@
 // ********** Model **********
 // .../7
 // QuerySelectors
-const solutionContainer;
-const triesContainer;
-const tryInputSection;
-const tryInputs;
-const trySubmitBtn;
-const messageContainer;
-const winnerSubmitBtn;
+const solutionContainer = document.querySelector('solution-container');
+const triesContainer = document.querySelector('tries-container');
+const tryInputSection = document.querySelector('try-input-section');
+const tryInputs = document.querySelector('try-input');
+const trySubmitBtn = document.querySelector('try-submit-btn');
+const messageContainer = document.querySelector('winner-message-container');
+const winnerSubmitBtn = document.querySelector('winner-submit-btn');
 
 // Save the code/solution of the game in this variable
 // Hint: save your code in an array
@@ -23,24 +23,28 @@ let code = null;
 // ********** View **********
 // .../1
 function hideCode() {
+  solutionContainer.classList.add('hidden');
   // hide the code
   // have a look at the html to find out how
 }
 
 // .../1
 function showCode() {
+  solutionContainer.classList.remove('hidden');
   // show the code
   // have a look at the html to find out how
 }
 
 // .../4
 function drawCode(codeArray) {
+
   // Draw the code  array into solution-container
   // Don't forget to empty the container first
 }
 
 // .../1
 function emptyTriesContainer() {
+  const triesContainer = [];
   // empty the tries container
 }
 
