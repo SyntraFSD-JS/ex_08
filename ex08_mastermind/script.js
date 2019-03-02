@@ -8,13 +8,13 @@
 // ********** Model **********
 // .../7
 // QuerySelectors
-const solutionContainer;
-const triesContainer;
-const tryInputSection;
-const tryInputs;
-const trySubmitBtn;
-const messageContainer;
-const winnerSubmitBtn;
+const solutionContainer = document.querySelector(#solution-container);
+const triesContainer = document.querySelector(#tries-container);
+const tryInputSection = document.querySelector(#try-input-section);
+const tryInputs = document.querySelectorAll(#try-inputs);
+const trySubmitBtn = document.querySelector(#try-submit-btn);
+const messageContainer = document.querySelectorAll(#winner-message-container);
+const winnerSubmitBtn = document.querySelectorAll(#winner-submit-btn);
 
 // Save the code/solution of the game in this variable
 // Hint: save your code in an array
