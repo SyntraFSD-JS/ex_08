@@ -4,6 +4,9 @@
 // pushing regularly (every 30 minutes)
 // clean code (indentation)
 
+/*
+* - validation message
+* */
 
 // ********** Model **********
 // .../7
@@ -12,10 +15,13 @@ const solutionContainer = document.querySelector('#solution-container');
 const triesContainer = document.querySelector('#tries-container');
 const tryInputSection = document.querySelector('#try-input-section');
 const tryInputContainer = document.querySelector('#try-input-container');
-const tryInputs = document.querySelector('.try-input');
+const dummyTry = document.querySelector('#dummy-try');
+const tryInputs = document.querySelectorAll('.try-input');
 const trySubmitBtn = document.querySelector('#try-submit-btn');
 const messageContainer = document.querySelector('#winner-message-container');
+const winnerContainer = document.querySelector('.winner');
 const winnerSubmitBtn = document.querySelector('#winner-submit-btn');
+const solutionOptions = document.querySelectorAll('.solution-option');
 
 // Save the code/solution of the game in this variable
 // Hint: save your code in an array
@@ -41,7 +47,7 @@ function drawCode(codeArray) {
   // Why should I empty the container when I populate it with new values directly?
 
   codeArray.forEach((number, index) => {
-    solutionContainer.querySelectorAll('.solution-option')[index].innerHTML = number;
+    solutionOptions[index].innerHTML = number;
   });
 
   // Draw the code  array into solution-container
@@ -59,7 +65,23 @@ function emptyTriesContainer() {
 // .../6
 function drawNewTry(tryArray, correctNumberCount, correctPlaceCount) {
   // append a new try to the triesContainer (check the html file)
+
+  const clone = dummyTry.cloneNode(true);
+
+  const children = clone.querySelectorAll('.try-option');
+  tryArray.forEach((number, index) => {
+    children[index].innerHTML = number;
+  });
+
+  clone.classList.remove('dont-show');
+  clone.querySelector('.correct-place').innerHTML = correctPlaceCount;
+  clone.querySelector('.correct-color').innerHTML = correctNumberCount;
+
+  triesContainer.appendChild(clone);
+
   // don't forget the winner class if all numbers are correct
+  if (correctNumberCount === children.length)
+    winnerContainer.classList.remove('dont-show');
 }
 
 // .../3
@@ -90,7 +112,7 @@ function showMessage() {
 // ********** Update **********
 // .../3
 function randomNumber() {
-  return Math.floor(Math.random() * 5) + 1;
+  return Math.floor(Math.random() * 6) + 1;
   // this function returns a random number between 1 and 6
 }
 
@@ -106,9 +128,14 @@ function validateTryInputs() {
   // make sure all numbers are between 1 and 6
   // return true or false
 
-  const wrongValue = tryInputContainer.querySelectorAll('.try-input').some((number) => Number.isNaN(number) || number < 1 || number > 6);
+  let wrong = false;
 
-  return !wrongValue;
+  tryInputs.forEach((input) => {
+    if (!input.checkValidity())
+      wrong = true;
+  });
+
+  return wrong;
 }
 
 // .../6
@@ -128,18 +155,32 @@ function initGame() {
 function generateTryArray() {
   // generate an array with the four values from the input fields
   // make sure they are inserted in the array as an int not a string
+
+  const array = [];
+  tryInputs.forEach(element => array.push(Number(element.value)));
+  return array;
 }
 
 // .../10
 function calculateCorrectNumberCount(codeArray, tryArray) {
   // Calculate the amount of correct numbers in the tryArray
   // A correct number does not have to be in the correct spot
+  
 }
 
 // .../6
 function calculateCorrectPlaceCount(codeArray, tryArray) {
   // Calculate the amount of numbers matching the code
   // The numbers have to be identical and in the same place
+
+  let correctPlaceCount = 0;
+
+  codeArray.forEach((number, index) => {
+    if (number === tryArray[index])
+      correctPlaceCount += 1;
+  });
+
+  return correctPlaceCount;
 }
 
 // ********** Events **********
@@ -147,8 +188,15 @@ window.addEventListener('load', function () {
   initGame();
 });
 
-trySubmitBtn.addEventListener('onclick', () => {
+trySubmitBtn.addEventListener('click', () => {
+  const tryArray = generateTryArray();
+
+  emptyTryInputs();
+
   validateTryInputs();
+  const correctNumberCount = calculateCorrectNumberCount(code, tryArray);
+  const correctPlaceCount = calculateCorrectPlaceCount(code, tryArray);
+  drawNewTry(tryArray, correctNumberCount, correctPlaceCount);
 });
 
 // .../8
