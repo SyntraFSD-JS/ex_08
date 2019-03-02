@@ -37,6 +37,11 @@ function showCode() {
 
 // .../4
 function drawCode(codeArray) {
+  for (var i = solutionContainer.length; i > 0; i--) {
+    solutionContainer.pop();
+  };
+  
+
 
   // Draw the code  array into solution-container
   // Don't forget to empty the container first
@@ -44,7 +49,9 @@ function drawCode(codeArray) {
 
 // .../1
 function emptyTriesContainer() {
-  const triesContainer = [];
+ for (var i = triesContainer.length; i > 0; i--) {
+    triesContainer.pop();
+  }
   // empty the tries container
 }
 
