@@ -16,12 +16,16 @@ const trySubmitBtn = document.querySelector('#try-submit-btn');
 const messageContainer = document.querySelectorAll('#winner-message-container');
 const winnerSubmitBtn = document.querySelectorAll('#winner-submit-btn');
 
+
 // Save the code/solution of the game in this variable
 // Hint: save your code in an array
 let code = [Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1)];
 
+const codeArray = document.querySelectorAll('.solution-option');
+
 // ********** View **********
 // .../1
+
 function hideCode() {
   // hide the code
   // have a look at the html to find out how
@@ -33,24 +37,52 @@ function showCode() {
   // show the code
   // have a look at the html to find out how
   solutionContainer.classList.remove('hidden');
+
 }
+
 
 // .../4
 function drawCode(codeArray) {
-  // Draw the code  array into solution-container
+  // Draw the code array into solution-container
   // Don't forget to empty the container first
+  // indexen v code overlopen => loopen (foreach evt)
+  // code[] toevoegen aan solution-container of solution-option? (innerhtml, textContent, string, number?)
 
+  codeArray.innerHtml = '';
+  // solutionContainer.innerHtml = '';
+
+  for (i = 0; i < codeArray.length; i++) {
+    solutionContainer.innerHTML = codeArray[i];
+  }
 }
+
 
 // .../1
 function emptyTriesContainer() {
   // empty the tries container
+  triesContainer.innerHTML = '';
 }
 
 // .../6
 function drawNewTry(tryArray, correctNumberCount, correctPlaceCount) {
   // append a new try to the triesContainer (check the html file)
   // don't forget the winner class if all numbers are correct
+
+  var newTry = document.createElement("div");
+  triesContainer.appendChild(newTry);
+  newTry.classList.add('try');
+  return newDiv;
+
+  var correctNumberCount =
+
+  var correctPlaceCount =
+
+
+  /*if(newTry ===
+
+  )
+*/
+
 }
 
 // .../3
