@@ -4,9 +4,6 @@
 // pushing regularly (every 30 minutes)
 // clean code (indentation)
 
-/*
-* - validation message
-* */
 
 // ********** Model **********
 // .../7
@@ -14,12 +11,10 @@
 const solutionContainer = document.querySelector('#solution-container');
 const triesContainer = document.querySelector('#tries-container');
 const tryInputSection = document.querySelector('#try-input-section');
-const tryInputContainer = document.querySelector('#try-input-container');
 const dummyTry = document.querySelector('#dummy-try');
 const tryInputs = document.querySelectorAll('.try-input');
 const trySubmitBtn = document.querySelector('#try-submit-btn');
 const messageContainer = document.querySelector('#winner-message-container');
-const winnerContainer = document.querySelector('.winner');
 const winnerSubmitBtn = document.querySelector('#winner-submit-btn');
 const solutionOptions = document.querySelectorAll('.solution-option');
 
@@ -56,10 +51,8 @@ function drawCode(codeArray) {
 
 // .../1
 function emptyTriesContainer() {
- for (let i = triesContainer.length; i > 0; i--) {
-    triesContainer.pop();
-  }
   // empty the tries container
+  triesContainer.innerHTML = '';
 }
 
 // .../6
@@ -74,19 +67,26 @@ function drawNewTry(tryArray, correctNumberCount, correctPlaceCount) {
   });
 
   clone.classList.remove('dont-show');
+  clone.removeAttribute('id');
   clone.querySelector('.correct-place').innerHTML = correctPlaceCount;
   clone.querySelector('.correct-color').innerHTML = correctNumberCount;
 
-  triesContainer.appendChild(clone);
-
   // don't forget the winner class if all numbers are correct
-  if (correctNumberCount === children.length)
-    winnerContainer.classList.remove('dont-show');
+  if (correctPlaceCount === children.length) {
+    clone.classList.add('winner');
+    showCode();
+    showMessage();
+  }
+
+  triesContainer.appendChild(clone);
 }
 
 // .../3
 function emptyTryInputs() {
   // empty the try input fields
+  tryInputs.forEach(input => {
+    input.value = '';
+  });
 }
 
 // .../2
@@ -128,27 +128,30 @@ function validateTryInputs() {
   // make sure all numbers are between 1 and 6
   // return true or false
 
-  let wrong = false;
+  let valid = true;
 
   tryInputs.forEach((input) => {
     if (!input.checkValidity())
-      wrong = true;
+      valid = false;
   });
 
-  return wrong;
+  return valid;
 }
 
 // .../6
 function initGame() {
   // Reset game
 
-  // Remove all entries
+  hideCode();
 
   code = generateNewCode();
 
   drawCode(code);
 
   showTryInput();
+
+  // Remove all entries
+  emptyTriesContainer();
 }
 
 // .../4
@@ -165,7 +168,15 @@ function generateTryArray() {
 function calculateCorrectNumberCount(codeArray, tryArray) {
   // Calculate the amount of correct numbers in the tryArray
   // A correct number does not have to be in the correct spot
-  
+
+  let correctNumberCount = 0;
+
+  tryArray.forEach((number) => {
+    if (codeArray.includes(number))
+      correctNumberCount += 1;
+  });
+
+  return correctNumberCount;
 }
 
 // .../6
@@ -188,17 +199,6 @@ window.addEventListener('load', function () {
   initGame();
 });
 
-trySubmitBtn.addEventListener('click', () => {
-  const tryArray = generateTryArray();
-
-  emptyTryInputs();
-
-  validateTryInputs();
-  const correctNumberCount = calculateCorrectNumberCount(code, tryArray);
-  const correctPlaceCount = calculateCorrectPlaceCount(code, tryArray);
-  drawNewTry(tryArray, correctNumberCount, correctPlaceCount);
-});
-
 // .../8
 // on submit btn click
 // check if the input are valid
@@ -212,6 +212,18 @@ trySubmitBtn.addEventListener('click', () => {
 // and show the code
 // of course you will need to use the correct update/view functions
 
+trySubmitBtn.addEventListener('click', () => {
+  if (validateTryInputs()) {
+    const tryArray = generateTryArray();
+    const correctNumberCount = calculateCorrectNumberCount(code, tryArray);
+    const correctPlaceCount = calculateCorrectPlaceCount(code, tryArray);
+    drawNewTry(tryArray, correctNumberCount, correctPlaceCount);
+
+    emptyTryInputs();
+  }
+});
+
 // .../3
 // on winner btn click
 // init a new game
+winnerSubmitBtn.addEventListener('click', initGame);
