@@ -20,7 +20,7 @@ const solutionOptions = document.querySelectorAll('.solution-option');
 
 // Save the code/solution of the game in this variable
 // Hint: save your code in an array
-let code;
+let code = [];
 
 // ********** View **********
 // .../1
