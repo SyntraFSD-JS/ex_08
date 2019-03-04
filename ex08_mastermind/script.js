@@ -92,13 +92,9 @@ function showMessage() {
 
 // ********** Update **********
 // .../3
-
-
-/*function randomNumber(0,6) {
-  min = Math.ceil(0);
-  max = Math.floor(6);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}*/
+function randomNumber() {
+  return Math.floor(Math.random() * (6)) + 1;
+}
 
 // .../4
 function generateNewCode() {
