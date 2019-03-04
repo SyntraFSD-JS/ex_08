@@ -99,8 +99,8 @@ function randomNumber() {
 // .../4
 function generateNewCode() {
   // this function generates and returns a new code (array of 4 random numbers)
-  for (let i=0; i<code.length; i++){
-    var newCode = solutionContainer.push(code[i]);
+  for (let i=0; i<codeArray.length; i++){
+    randomNumber().push(codeArray[i]);
   }
   return solutionContainer;
 }
