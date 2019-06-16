@@ -11,55 +11,43 @@
 const solutionContainer = document.querySelector('#solution-container');
 const triesContainer = document.querySelector('#tries-container');
 const tryInputSection = document.querySelector('#try-input-section');
-const tryInputs = document.querySelectorAll('#try-inputs');
+const tryInputs = document.querySelectorAll('#try-input');
 const trySubmitBtn = document.querySelector('#try-submit-btn');
-const messageContainer = document.querySelectorAll('#winner-message-container');
-const winnerSubmitBtn = document.querySelectorAll('#winner-submit-btn');
+const messageContainer = document.querySelector('#winner-message-container');
+const winnerSubmitBtn = document.querySelector('#winner-submit-btn');
+const solutionOption = document.querySelectorAll('.solution-option');
 
+let code = [];
+let codeArray = [];
 
-// Save the code/solution of the game in this variable
-// Hint: save your code in an array
-let code = [Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1), Math.floor((Math.random() * 6) + 1)];
-
-const codeArray = document.querySelectorAll('.solution-option');
 
 // ********** View **********
 // 1/1
 
 function hideCode() {
-  // hide the code
-  // have a look at the html to find out how
   solutionContainer.classList.add('hidden');
 }
 
 // 1/1
 function showCode() {
-  // show the code
-  // have a look at the html to find out how
   solutionContainer.classList.remove('hidden');
-
 }
-
 
 // 0/4
 function drawCode(codeArray) {
   // Draw the code array into solution-container
   // Don't forget to empty the container first
-  // indexen v code overlopen => loopen (foreach evt)
-  // code[] toevoegen aan solution-container of solution-option? (innerhtml, textContent, string, number?)
 
-  codeArray.innerHtml = '';
-  // solutionContainer.innerHtml = '';
+  solutionContainer.innerHtml = '';
 
-  for (i = 0; i < codeArray.length; i++) {
-    solutionContainer.innerHTML = codeArray[i];
+
+  for (i = 0; i < solutionOption.length; i++) {
+    codeArray.push(solutionOption[i]);
   }
-}
-
+  }
 
 // 1/1
 function emptyTriesContainer() {
-  // empty the tries container
   triesContainer.innerHTML = '';
 }
 
@@ -68,51 +56,55 @@ function drawNewTry(tryArray, correctNumberCount, correctPlaceCount) {
   // append a new try to the triesContainer (check the html file)
   // don't forget the winner class if all numbers are correct
 
-  var newTry = document.createElement("div");
-  triesContainer.appendChild(newTry);
-  newTry.classList.add('try');
-  return newDiv;
+  var tryArray = document.getElementsByClassName('try');
+  var cloneTryArray = tryArray.cloneNode(true);
+  triesContainer.appendChild(cloneTryArray);
 
-  var correctNumberCount =
+  cloneTryArray.classList.remove('dont-show');
 
-  var correctPlaceCount =
-
-
-  /*if(newTry ===
-
-  )
-*/
-
-}
+  //geen enkel idee wat er met andere parameters functie moet gebeuren
+  //of waarvoor ze dienen
+  //wat doet deze functie eigenlijk?
 
 // 0/3
 function emptyTryInputs() {
-  // empty the try input fields
+  for (i = 0; i < 4; i++) {
+    tryInputs[i].innerHtml = "";
+  }
 }
 
 // 0/2
 function showTryInput() {
   // show tryInputContainer
   // hide messageContainer
-  // use dont-show class
+
+  tryInputSection.classList.remove("dont-show");
+  messageContainer.classList.add("dont-show");
 }
 
 // 0/2
 function showMessage() {
-  // show tryInputContainer
-  // hide messageContainer
+  // show tryInputContainer // huh? zal omgekeerd moeten zijn neem ik aan
+  // hide messageContainer // idem
   // use dont-show class
+
+  tryInputSection.classList.add("dont-show");
+  messageContainer.classlist.remove("dont-show");
 }
 
 // ********** Update **********
 // 0/3
 function randomNumber() {
-  // this function returns a random number between 1 and 6
+  return Math.floor(Math.random() * (6)) + 1;
 }
 
 // 0/4
 function generateNewCode() {
   // this function generates and returns a new code (array of 4 random numbers)
+  for (let i=0; i<codeArray.length; i++){
+    randomNumber().push(codeArray[i]);
+  }
+  return solutionContainer;
 }
 
 // 0/4
@@ -120,17 +112,35 @@ function validateTryInputs() {
   // validate all four try input field
   // make sure all numbers are between 1 and 6
   // return true or false
+  for (i=0; i< tryInputs.length; i++) {
+    if(tryInputs.length < 4)
+      alert("invalid input : please input 4 numbers");
+    ||
+    if (tryInputs < 1 && tryInputs > 6)
+      alert ("invalid input: input number must be greater than 0 and smaller than 6)";
 }
 
 // 0/6
 function initGame() {
   // Reset game
+
+  hideCode();
+  drawCode();
+  emptyTryInputs();
+  // randomNumber();
+  generateNewCode();
+  showTryInput();
+
 }
 
 // 0/4
 function generateTryArray() {
   // generate an array with the four values from the input fields
   // make sure they are inserted in the array as an int not a string
+
+  for(i=0; i<tryInputs.length; i++) {
+    var tryArray = tryArray.push(tryInputs[i]);
+  }
 }
 
 // 0/10
