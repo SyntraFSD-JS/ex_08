@@ -1,12 +1,12 @@
 // .../80
-// .../4
+// 2/4
 // ten points for:
 // pushing regularly (every 30 minutes)
 // clean code (indentation)
 
 
 // ********** Model **********
-// .../7
+// 6/7
 // QuerySelectors
 const solutionContainer = document.querySelector('#solution-container');
 const triesContainer = document.querySelector('#tries-container');
@@ -23,21 +23,21 @@ const solutionOptions = document.querySelectorAll('.solution-option');
 let code;
 
 // ********** View **********
-// .../1
+// 1/1
 function hideCode() {
   solutionContainer.classList.add('hidden');
   // hide the code
   // have a look at the html to find out how
 }
 
-// .../1
+// 1/1
 function showCode() {
   solutionContainer.classList.remove('hidden');
   // show the code
   // have a look at the html to find out how
 }
 
-// .../4
+// 4/4
 function drawCode(codeArray) {
   // Why should I empty the container when I populate it with new values directly?
 
@@ -49,13 +49,13 @@ function drawCode(codeArray) {
   // Don't forget to empty the container first
 }
 
-// .../1
+// 1/1
 function emptyTriesContainer() {
   // empty the tries container
   triesContainer.innerHTML = '';
 }
 
-// .../6
+// 6/6
 function drawNewTry(tryArray, correctNumberCount, correctPlaceCount) {
   // append a new try to the triesContainer (check the html file)
 
@@ -81,7 +81,7 @@ function drawNewTry(tryArray, correctNumberCount, correctPlaceCount) {
   triesContainer.appendChild(clone);
 }
 
-// .../3
+//3/3
 function emptyTryInputs() {
   // empty the try input fields
   tryInputs.forEach(input => {
@@ -89,7 +89,7 @@ function emptyTryInputs() {
   });
 }
 
-// .../2
+// 2/2
 function showTryInput() {
   // show tryInputContainer
   // hide messageContainer
@@ -99,7 +99,7 @@ function showTryInput() {
   messageContainer.classList.add('dont-show');
 }
 
-// .../2
+// 2/2
 function showMessage() {
   // hide tryInputContainer
   // show messageContainer
@@ -110,19 +110,19 @@ function showMessage() {
 }
 
 // ********** Update **********
-// .../3
+// 2,5/3
 function randomNumber() {
   return Math.floor(Math.random() * 6) + 1;
   // this function returns a random number between 1 and 6
 }
 
-// .../4
+// 4/4
 function generateNewCode() {
   return Array(4).fill(0,0,4).map(() => randomNumber());
   // this function generates and returns a new code (array of 4 random numbers)
 }
 
-// .../4
+// 4/4
 function validateTryInputs() {
   // validate all four try input field
   // make sure all numbers are between 1 and 6
@@ -138,7 +138,7 @@ function validateTryInputs() {
   return valid;
 }
 
-// .../6
+// 5/6
 function initGame() {
   // Reset game
 
@@ -154,7 +154,7 @@ function initGame() {
   emptyTriesContainer();
 }
 
-// .../4
+// 4/4
 function generateTryArray() {
   // generate an array with the four values from the input fields
   // make sure they are inserted in the array as an int not a string
@@ -164,7 +164,7 @@ function generateTryArray() {
   return array;
 }
 
-// .../10
+// 10/10
 function calculateCorrectNumberCount(codeArray, tryArray) {
   // Calculate the amount of correct numbers in the tryArray
   // A correct number does not have to be in the correct spot
@@ -179,7 +179,7 @@ function calculateCorrectNumberCount(codeArray, tryArray) {
   return correctNumberCount;
 }
 
-// .../6
+// 6/6
 function calculateCorrectPlaceCount(codeArray, tryArray) {
   // Calculate the amount of numbers matching the code
   // The numbers have to be identical and in the same place
@@ -199,7 +199,7 @@ window.addEventListener('load', function () {
   initGame();
 });
 
-// .../8
+// 7/8
 // on submit btn click
 // check if the input are valid
 // if the inputs are not valid do nothing
@@ -223,7 +223,7 @@ trySubmitBtn.addEventListener('click', () => {
   }
 });
 
-// .../3
+// 3/3
 // on winner btn click
 // init a new game
 winnerSubmitBtn.addEventListener('click', initGame);
