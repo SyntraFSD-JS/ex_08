@@ -1,19 +1,19 @@
 // .../80
-// .../4
+// 2/4
 // ten points for:
 // pushing regularly (every 30 minutes)
 // clean code (indentation)
 
 
 // ********** Model **********
-// .../7
+// 7/7
 // QuerySelectors
 const solutionContainer = document.querySelector('#solution-container');
 const triesContainer = document.querySelector('#tries-container');
 const tryInputSection = document.querySelector('#try-input-section');
 const tryInputs = document.querySelectorAll('.try-input');
-const trySubmitBtn = document.querySelector ('#try-submit-btn');
-const messageContainer = document.querySelector ('#winner-message-container');
+const trySubmitBtn = document.querySelector('#try-submit-btn');
+const messageContainer = document.querySelector('#winner-message-container');
 const winnerSubmitBtn = document.querySelector('#winner-submit-btn');
 
 // Save the code/solution of the game in this variable
@@ -22,21 +22,21 @@ let code = null;
 
 
 // ********** View **********
-// .../1
+// 0,5/1
 function hideCode() {
   // hide the code
   // have a look at the html to find out how
-  solutionContainer.classList.add('hidden')
+  solutionContainer.classList.add('hidden');
 }
 
-// .../1
+//0,5/1
 function showCode() {
   // show the code
   // have a look at the html to find out how
-  solutionContainer.classList.remove('hidden')
+  solutionContainer.classList.remove('hidden');
 }
 
-// .../4
+// 2/4
 function drawCode(codeArray) {
   // Draw the code  array into solution-container
   // Don't forget to empty the container first
@@ -50,7 +50,7 @@ function drawCode(codeArray) {
   }
 }
 
-// .../1
+// 1/1
 function emptyTriesContainer() {
   // bij nieuw spel... ttz bij "Nieuw Spel"-button of bij onLoad Window
   // empty the tries container
@@ -61,7 +61,7 @@ function emptyTriesContainer() {
   // triesContainer.innerHTML = ''
 }
 
-// .../6
+// 3/6
 function drawNewTry(tryArray, correctNumberCount, correctPlaceCount) {
   // append a new try to the triesContainer (check the html file)
   // don't forget the winner class if all numbers are correct
@@ -95,7 +95,7 @@ function drawNewTry(tryArray, correctNumberCount, correctPlaceCount) {
 }
 
 
-// .../3
+// 3/3
 function emptyTryInputs() {
   // empty the try input fields
   while (tryInputs.hasChildNodes()) {
@@ -103,42 +103,42 @@ function emptyTryInputs() {
   }
 }
 
-// .../2
+// 1,5/2
 function showTryInput() {
   // show tryInputContainer
   // hide messageContainer
   // use dont-show class
   tryInputSection.classList.remove('dont-show');
-  messageContainer.classList.add('dont-show')
+  messageContainer.classList.add('dont-show');
 }
 
-// .../2
+// 1/2
 function showMessage() {
   // show tryInputContainer
   // hide messageContainer
   // use dont-show class
-  messageContainer.classList.remove('dont-show')
+  messageContainer.classList.remove('dont-show');
 }
 
 // ********** Update **********
-// .../3
+// 3/3
 function randomNumber() {
   // this function returns a random number between 1 and 6
   return Math.floor(Math.random() * 6) + 1;
 }
 
-// .../4
+// 3/4
 function generateNewCode() {
   // this function generates and returns a new code (array of 4 random numbers)
-  code= new Array()
+  code= new Array();
   for (let i=0; i<4; i++) {
-    code.push(randomNumber())
+    code.push(randomNumber());
   }
   return code;
 }
 
 
-// .../4
+// 4/4
 function validateTryInputs(codeArray) {
   // validate all four try input field
   // make sure all numbers are between 1 and 6
@@ -146,7 +146,7 @@ function validateTryInputs(codeArray) {
 
   for (let i=0; i<tryInputs.length; i++) {
     let myCheck = tryInputs[i].value;
-    if ( myCheck <1 || myCheck >6 ) { 
+    if ( myCheck <1 || myCheck >6 ) {
       return false
     } else {
       // do nothing
@@ -158,7 +158,7 @@ function validateTryInputs(codeArray) {
 
 }
 
-// .../6
+// 4/6
 function initGame() {
   // Reset game
   generateNewCode();
@@ -168,7 +168,7 @@ function initGame() {
   showTryInput();
 }
 
-// .../4
+//4/4
 function generateTryArray() {
   // generate an array with the four values from the input fields
   // make sure they are inserted in the array as an int not a string
@@ -179,7 +179,7 @@ function generateTryArray() {
   return myTryArray;
 }
 
-// .../10
+// 4/10
 function calculateCorrectNumberCount(codeArray, tryArray) {
   // Calculate the amount of correct numbers in the tryArray
   // A correct number does not have to be in the correct spot
@@ -202,7 +202,7 @@ function calculateCorrectNumberCount(codeArray, tryArray) {
   return match;
 }
 
-// .../6
+// 5/6
 function calculateCorrectPlaceCount(codeArray, tryArray) {
   // Calculate the amount of numbers matching the code
   // The numbers have to be identical and in the same place
@@ -225,7 +225,7 @@ window.addEventListener('load', function () {
   initGame();
 });
 
-// .../8
+// 6/8
 // on submit btn click
 // check if the input are valid
 // if the inputs are not valid do nothing
@@ -247,14 +247,14 @@ trySubmitBtn.addEventListener('click',function(){
         calculateCorrectNumberCount(code, myTryArray),
         calculateCorrectPlaceCount(code, myTryArray)
         )
-    
+
   } else {
     // do nothing ?
   }
 
 });
 
-// .../3
+// 3/3
 // on winner btn click
 // init a new game
 winnerSubmitBtn.addEventListener('click', function() {
